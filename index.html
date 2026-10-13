@@ -4,37 +4,216 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Home Free</title>
+<meta name="description" content="Home Free helps you and the people you share money with pay off debt and save, together, with one plan everyone can see.">
+<meta property="og:title" content="Home Free">
+<meta property="og:description" content="Pay off debt and save together, as a crew.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600&display=swap">
 <style>
-:root { --bg: #F4EFE4; --card: #FBF8F2; --ink: #2B2926; --muted: #6E6858; --line: #E4DCCB; --brand: #4E7A5C;
-  --display: "Lexend", ui-sans-serif, system-ui, sans-serif; --body: -apple-system, "SF Pro Text", system-ui, sans-serif; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; color-scheme: dark } }
-:root[data-theme="dark"] { --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; color-scheme: dark }
+:root {
+  --bg: #F4EFE4; --card: #FBF8F2; --ink: #2B2926; --muted: #6E6858; --line: #E4DCCB; --brand: #4E7A5C; --brand-soft: #DDE9DD;
+  --gold: #F3D89A; --cream: #FBF8F2; --rina: #8E6BB8; --ochre: #B07A2A;
+  --display: "Lexend", ui-sans-serif, system-ui, sans-serif; --body: -apple-system, "SF Pro Text", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; --brand-soft: #2F3A31; --rina: #B79BDB; --ochre: #D9A65A; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; --brand-soft: #2F3A31; --rina: #B79BDB; --ochre: #D9A65A; color-scheme: dark }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); }
-main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
-header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
-header a { color: inherit; text-decoration: none; font: 600 20px var(--display); letter-spacing: -0.02em; }
-header span { color: var(--brand); }
-h1 { font: 600 32px/1.15 var(--display); letter-spacing: -0.02em; margin: 0 0 6px; text-wrap: balance; }
-.date { color: var(--muted); margin: 0 0 28px; font-size: 14px; }
-h2 { font: 600 20px/1.3 var(--display); margin: 36px 0 8px; }
-p, li { max-width: 68ch; }
-ul { padding-left: 20px; }
-li { margin: 4px 0; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
 a { color: var(--brand); }
-.summary { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 4px 20px; margin-bottom: 8px; }
-footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; display: flex; gap: 16px; flex-wrap: wrap; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+/* Hero: the app's painted street, with the clouds drifting behind the buildings as on sign-in. */
+.hero { position: relative; min-height: min(92vh, 860px); display: grid; place-items: center; overflow: hidden; isolation: isolate; color: var(--cream); text-align: center; }
+.hero .layer { position: absolute; inset: 0; z-index: -1; }
+.hero .layer img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+@media (max-aspect-ratio: 4/5) { .hero .layer img { object-position: 50% 55%; } }
+.sky { overflow: hidden; }
+.sky .strip { position: absolute; top: 0; left: 0; height: 100%; width: 300%; display: flex; animation: drift 120s linear infinite; will-change: transform; }
+.sky .strip img { width: 33.334%; height: 100%; object-fit: cover; flex: none; }
+.sky .strip img:nth-child(2) { transform: scaleX(-1); }
+@keyframes drift { from { transform: translateX(-66.667%); } to { transform: translateX(0); } }
+.night-sky { background: linear-gradient(#0D1E2C, #224652 60%); display: none; }
+.shade { background: linear-gradient(rgb(14 24 30 / .55), rgb(14 24 30 / .2) 38%, rgb(14 24 30 / .25) 62%, var(--bg) 99%); }
+.day-only { display: block; } .night-only { display: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .day-only { display: none; } :root:not([data-theme="light"]) .night-only { display: block; } :root:not([data-theme="light"]) .night-sky { display: block; } }
+.hero-inner { padding: 96px 20px 140px; display: grid; justify-items: center; gap: 18px; }
+.glass { width: 96px; height: 96px; border-radius: 26px; display: grid; place-items: center; position: relative; overflow: hidden;
+  background: rgb(255 255 255 / .16); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .55), inset 0 -1px 0 rgb(255 255 255 / .12), 0 12px 30px rgb(0 0 0 / .25); }
+.glass::before { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, rgb(255 255 255 / .38), rgb(255 255 255 / 0) 42%); }
+.glass svg { width: 68px; height: 68px; position: relative; }
+.word { width: min(340px, 78vw); height: auto; filter: drop-shadow(0 2px 14px rgb(0 0 0 / .35)); }
+.tag { font: 500 clamp(20px, 3vw, 26px)/1.3 var(--display); margin: 0; max-width: 24ch; text-shadow: 0 1px 10px rgb(0 0 0 / .45); text-wrap: balance; }
+.soon { margin-top: 6px; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; font: 600 15px var(--body);
+  background: rgb(0 0 0 / .55); color: #fff; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.soon svg { width: 16px; height: 16px; }
+
+section { padding: 80px 0; }
+.eyebrow { font: 600 13px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--brand); margin: 0 0 10px; }
+h2 { font: 600 clamp(28px, 4vw, 38px)/1.15 var(--display); letter-spacing: -0.02em; margin: 0 0 14px; text-wrap: balance; }
+.lede { color: var(--muted); font-size: 19px; max-width: 60ch; margin: 0; }
+
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 36px; }
+.feature { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+.feature .icon { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand); margin-bottom: 14px; }
+.feature .icon svg { width: 22px; height: 22px; }
+.feature h3 { font: 600 19px/1.3 var(--display); margin: 0 0 6px; }
+.feature p { margin: 0; color: var(--muted); font-size: 16px; }
+
+.how { display: grid; grid-template-columns: 1fr 360px; gap: 56px; align-items: center; padding-top: 40px; }
+@media (max-width: 860px) { .how { grid-template-columns: 1fr; } .phone { margin: 0 auto; } }
+.steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 22px; counter-reset: step; }
+.steps li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; counter-increment: step; }
+.steps li::before { content: counter(step); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); color: var(--bg); font: 600 17px var(--display); }
+.steps h3 { font: 600 18px/1.3 var(--display); margin: 6px 0 4px; }
+.steps p { margin: 0; color: var(--muted); font-size: 16px; }
+
+/* A still of the Home screen, drawn in HTML so it matches the app's colors in both themes. */
+.phone { width: 340px; max-width: 100%; border-radius: 46px; background: var(--bg); padding: 52px 14px 22px; box-shadow: 0 0 0 9px #1d1c1a, 0 30px 60px rgb(0 0 0 / .22); font-size: 14px; }
+.phone .title { font: 600 26px var(--display); margin: 0 4px 14px; }
+.pcard { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 13px 14px 15px; margin-bottom: 11px; }
+.plabel { font: 600 10px var(--body); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.phead { font: 600 16px/1.3 var(--display); margin: 0 0 3px; }
+.psub { color: var(--muted); font-size: 12.5px; margin: 0; line-height: 1.4; }
+.month { display: flex; gap: 12px; align-items: center; }
+.ring { width: 74px; height: 74px; flex: none; position: relative; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 8; }
+.ring .t { stroke: var(--brand-soft); } .ring .f { stroke: var(--brand); stroke-linecap: round; stroke-dasharray: 201; stroke-dashoffset: 108.5; }
+.ring span { position: absolute; inset: 0; display: grid; place-items: center; font: 600 14px var(--display); }
+.prow { display: flex; align-items: center; gap: 9px; padding: 7px 0; border-top: 1px solid var(--line); }
+.prow:first-of-type { border-top: 0; }
+.av { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font: 600 10px var(--body); background: var(--brand-soft); color: var(--brand); flex: none; }
+.av.r { background: color-mix(in srgb, var(--rina) 18%, transparent); color: var(--rina); }
+.prow .n { flex: 1; } .prow b { font: 600 13.5px var(--display); }
+.bar { height: 7px; border-radius: 99px; background: var(--brand-soft); margin-top: 8px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 38%; background: var(--brand); border-radius: inherit; }
+
+.privacy { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: clamp(28px, 5vw, 48px); }
+.checks { list-style: none; padding: 0; margin: 26px 0 22px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px 28px; }
+.checks li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; }
+.checks svg { width: 22px; height: 22px; color: var(--brand); margin-top: 2px; }
+
+footer { padding: 28px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+footer .brand { font: 600 16px var(--display); color: var(--ink); margin-right: auto; }
+footer .brand span { color: var(--brand); }
+footer a { color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) { .sky .strip { animation: none; transform: translateX(-33.334%); } html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
-<main>
-<header><a href="./">Home <span>Free</span></a></header>
 
-<h1>Home Free</h1>
-<p>Pay off debt and save together, as a crew.</p>
-<footer><a href="privacy/">Privacy Policy</a><a href="terms/">Terms of Use</a><a href="mailto:homefree.dev@gmail.com">homefree.dev@gmail.com</a></footer>
+<header class="hero">
+  <div class="layer sky day-only" aria-hidden="true"><div class="strip"><img src="assets/sky-day.webp" alt=""><img src="assets/sky-day.webp" alt=""><img src="assets/sky-day.webp" alt=""></div></div>
+  <div class="layer night-sky" aria-hidden="true"></div>
+  <div class="layer sky night-only" aria-hidden="true"><div class="strip"><img src="assets/clouds-night.webp" alt=""><img src="assets/clouds-night.webp" alt=""><img src="assets/clouds-night.webp" alt=""></div></div>
+  <div class="layer day-only" aria-hidden="true"><img src="assets/fg-day.webp" alt=""></div>
+  <div class="layer night-only" aria-hidden="true"><img src="assets/fg-night.webp" alt=""></div>
+  <div class="layer shade" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="glass"><svg viewBox="0 -960 960 960" aria-hidden="true">
+<path d="M96-570 480-850 864-570" fill="none" stroke="#FBF8F2" stroke-width="130" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M700-690V-820" fill="none" stroke="#FBF8F2" stroke-width="130" stroke-linecap="round"/>
+<circle cx="240" cy="-340" r="80" fill="#C2D8C6"/><path d="M80-60c0-90 70-160 160-160s160 70 160 160z" fill="#C2D8C6"/>
+<circle cx="720" cy="-340" r="80" fill="#AECBB4"/><path d="M560-60c0-90 70-160 160-160s160 70 160 160z" fill="#AECBB4"/>
+<circle cx="480" cy="-400" r="100" fill="#DDE9DD"/><path d="M290-60c0-110 85-190 190-190s190 80 190 190z" fill="#DDE9DD"/>
+</svg></div>
+    <h1 style="margin:0"><svg class="word" role="img" aria-label="Home Free" xmlns="http://www.w3.org/2000/svg" viewBox="91 -700 5050 710"><path fill="#FBF8F2" d="M91 0V-700H241V-417H532V-700H682V0H532V-281H241V0Z M1060 10Q979 10 915.5 -25.5Q852 -61 815.5 -123.5Q779 -186 779 -265Q779 -344 815.5 -406.5Q852 -469 915.5 -504.5Q979 -540 1060 -540Q1140 -540 1203 -504.5Q1266 -469 1302.5 -406.5Q1339 -344 1339 -265Q1339 -186 1302.5 -123.5Q1266 -61 1203 -25.5Q1140 10 1060 10ZM1060 -114Q1100 -114 1130.5 -133.5Q1161 -153 1178.5 -187Q1196 -221 1196 -265Q1196 -331 1157.5 -374Q1119 -417 1060 -417Q1020 -417 989 -397Q958 -377 940.5 -343Q923 -309 923 -265Q923 -221 940.5 -187Q958 -153 989 -133.5Q1020 -114 1060 -114Z M1416 0V-529H1553L1555 -459Q1582 -496 1624.5 -517.5Q1667 -539 1712 -539Q1767 -539 1807 -515.5Q1847 -492 1868 -440Q1895 -484 1945.5 -511.5Q1996 -539 2046 -539Q2231 -539 2231 -321V0H2089V-311Q2089 -416 2001 -416Q1955 -416 1924.5 -387Q1894 -358 1894 -316V0H1752V-312Q1752 -363 1729.5 -389.5Q1707 -416 1665 -416Q1619 -416 1589 -387.5Q1559 -359 1559 -317V0Z M2587 10Q2501 10 2436.5 -25Q2372 -60 2336.5 -121Q2301 -182 2301 -261Q2301 -343 2335.5 -406Q2370 -469 2431 -504.5Q2492 -540 2570 -541Q2642 -540 2698.5 -506Q2755 -472 2787 -412.5Q2819 -353 2817 -277L2816 -233H2439Q2451 -179 2493.5 -147Q2536 -115 2602 -115Q2637 -115 2666 -126Q2695 -137 2728 -164L2796 -69Q2752 -30 2697 -10Q2642 10 2587 10ZM2572 -419Q2462 -419 2440 -320H2683V-324Q2680 -365 2648.5 -392Q2617 -419 2572 -419Z "/><path fill="#F3D89A" d="M3192 0V-700H3656V-580H3322V-405H3613V-287H3322V0Z M3739 0V-527H3860L3861 -436Q3885 -480 3928.5 -509Q3972 -538 4020 -538Q4037 -538 4052.5 -535Q4068 -532 4078 -528L4045 -393Q4034 -399 4018 -403Q4002 -407 3986 -407Q3952 -407 3924 -390.5Q3896 -374 3879.5 -345.5Q3863 -317 3863 -281V0Z M4355 10Q4272 10 4208.5 -24.5Q4145 -59 4109.5 -120Q4074 -181 4074 -259Q4074 -341 4108.5 -404Q4143 -467 4203.5 -502.5Q4264 -538 4343 -539Q4413 -538 4468.5 -504.5Q4524 -471 4555.5 -412.5Q4587 -354 4585 -279L4584 -236H4195Q4205 -173 4251 -136.5Q4297 -100 4368 -100Q4405 -100 4436 -112Q4467 -124 4503 -155L4564 -70Q4523 -33 4467 -11.5Q4411 10 4355 10ZM4343 -430Q4222 -430 4198 -320H4465V-325Q4461 -370 4426 -400Q4391 -430 4343 -430Z M4911 10Q4828 10 4764.5 -24.5Q4701 -59 4665.5 -120Q4630 -181 4630 -259Q4630 -341 4664.5 -404Q4699 -467 4759.5 -502.5Q4820 -538 4899 -539Q4969 -538 5024.5 -504.5Q5080 -471 5111.5 -412.5Q5143 -354 5141 -279L5140 -236H4751Q4761 -173 4807 -136.5Q4853 -100 4924 -100Q4961 -100 4992 -112Q5023 -124 5059 -155L5120 -70Q5079 -33 5023 -11.5Q4967 10 4911 10ZM4899 -430Q4778 -430 4754 -320H5021V-325Q5017 -370 4982 -400Q4947 -430 4899 -430Z"/></svg></h1>
+    <p class="tag">Pay off debt and save together, as a crew.</p>
+    <span class="soon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9s-1.9-.8-3.2-.8C6.5 7.2 5 8.2 4.1 9.7c-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.8-4.6zM14 5.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>Coming soon to iPhone</span>
+  </div>
+</header>
+
+<main>
+  <section class="wrap">
+    <p class="eyebrow">What it is</p>
+    <h2>One plan for the people you share money with.</h2>
+    <p class="lede">Home Free is for couples, families and housemates paying down debt and saving together. Everyone connects their own accounts, the crew agrees on one plan, and each month the app shows what to pay, who's done their part and when you'll be debt-free.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 4l9 8"/><path d="M5 10v10h14V10"/></svg></div>
+        <h3>A debt-free date</h3>
+        <p>Pick highest-interest first or smallest balance first, set what each of you puts in, and see the month you'll be free.</p>
+      </div>
+      <div class="feature">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15 14.5c.6-.3 1.3-.5 2-.5 2.8 0 5 2.2 5 5"/></svg></div>
+        <h3>Your crew, together</h3>
+        <p>Invite your partner or family. Everyone sees the shared debts, this month's payments and who's paid what.</p>
+      </div>
+      <div class="feature">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="m9 15 2 2 4-4"/></svg></div>
+        <h3>Every month, on track</h3>
+        <p>What's due and when, marked paid in a tap, with due dates in your calendar if you want them.</p>
+      </div>
+      <div class="feature">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-11a7 7 0 0 1 14 0c0 6.5-7 11-7 11z"/><path d="M9 10.5 11 12.5 15 8.5"/></svg></div>
+        <h3>Then, save</h3>
+        <p>Add a goal, like an emergency fund. It fills once the debt is gone, or alongside it if you'd rather.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap how">
+    <div>
+      <p class="eyebrow">How it works</p>
+      <h2>Three steps, then just check in.</h2>
+      <ol class="steps">
+        <li><div><h3>Connect your banks</h3><p>Each person links their own cards and loans through Plaid. Balances, rates and due dates come in on their own, or add a debt by hand.</p></div></li>
+        <li><div><h3>Make the plan together</h3><p>Choose which debt goes first and how much extra each of you puts in. The plan shows the payments and the debt-free month.</p></div></li>
+        <li><div><h3>Pay, mark it, watch it shrink</h3><p>Home shows what's next and who's paid what. Progress shows the debt going down month by month.</p></div></li>
+      </ol>
+    </div>
+    <div class="phone" role="img" aria-label="The Home screen: this month 46% paid, the next payments, and who's paid what">
+      <div class="title">Morning, Sam</div>
+      <div class="pcard">
+        <div class="plabel">This month</div>
+        <div class="month">
+          <div class="ring"><svg viewBox="0 0 74 74"><circle class="t" cx="37" cy="37" r="32"/><circle class="f" cx="37" cy="37" r="32"/></svg><span>46%</span></div>
+          <div><p class="phead">On track this month</p><p class="psub">$585.00 of $1,275.00 paid. Next up: Discover card on Oct 14.</p></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="plabel">Up next</div>
+        <div class="prow"><span class="av r">R</span><span class="n">Discover card</span><b>$60.00</b></div>
+        <div class="prow"><span class="av">S</span><span class="n">Auto loan</span><b>$390.00</b></div>
+        <div class="prow"><span class="av">S</span><span class="n">Student loan</span><b>$240.00</b></div>
+      </div>
+      <div class="pcard">
+        <div class="plabel">Debt-free</div>
+        <p class="phead">Debt-free by March 2030</p>
+        <p class="psub">$40,590.00 left. 6% paid off since July.</p>
+        <div class="bar"><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="privacy">
+      <p class="eyebrow">Private by design</p>
+      <h2>Your money is yours. We just help you plan it.</h2>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>No ads, and your data is never sold.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Your transactions and spending are seen only by you, never by your crew.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>We never see your bank password. Banks connect through Plaid.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Disconnect a bank or delete your account in the app, any time.</span></li>
+      </ul>
+      <p style="margin:0">Read the full <a href="privacy/">Privacy Policy</a> and <a href="terms/">Terms of Use</a>.</p>
+    </div>
+  </section>
 </main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand">Home <span>Free</span></span>
+    <a href="privacy/">Privacy Policy</a>
+    <a href="terms/">Terms of Use</a>
+    <a href="mailto:homefree.dev@gmail.com">homefree.dev@gmail.com</a>
+  </div>
+</footer>
+
 </body>
 </html>
