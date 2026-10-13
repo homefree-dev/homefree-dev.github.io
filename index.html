@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Home Free</title>
 <meta name="description" content="Home Free helps you and the people you share money with pay off debt and save, together, with one plan everyone can see.">
 <meta property="og:title" content="Home Free">
@@ -22,7 +22,7 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
 a { color: var(--brand); }
-.wrap { max-width: 1040px; margin: 0 auto; padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left)); }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
 
 /* Hero: the app's painted street, with the clouds drifting behind the buildings as on sign-in. */
 .hero { position: relative; min-height: min(92vh, 860px); display: grid; place-items: center; overflow: hidden; isolation: isolate; color: var(--cream); text-align: center; }
@@ -38,7 +38,7 @@ a { color: var(--brand); }
 .shade { background: linear-gradient(rgb(14 24 30 / .55), rgb(14 24 30 / .2) 38%, rgb(14 24 30 / .25) 62%, var(--bg) 99%); }
 .day-only { display: block; } .night-only { display: none; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .day-only { display: none; } :root:not([data-theme="light"]) .night-only { display: block; } :root:not([data-theme="light"]) .night-sky { display: block; } }
-.hero-inner { padding: calc(96px + env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) 140px max(20px, env(safe-area-inset-left)); display: grid; justify-items: center; gap: 18px; }
+.hero-inner { padding: 96px 20px 140px; display: grid; justify-items: center; gap: 18px; }
 .glass { width: 96px; height: 96px; border-radius: 26px; display: grid; place-items: center; position: relative; overflow: hidden;
   background: rgb(255 255 255 / .16); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / .55), inset 0 -1px 0 rgb(255 255 255 / .12), 0 12px 30px rgb(0 0 0 / .25); }
