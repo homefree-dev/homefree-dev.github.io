@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#575750" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1B24" media="(prefers-color-scheme: dark)">
 <title>Home Free</title>
 <meta name="description" content="Home Free helps you and the people you share money with pay off debt and save, together, with one plan everyone can see.">
 <meta property="og:title" content="Home Free">
@@ -10,19 +12,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600&display=swap">
 <style>
-:root {
+:root { --hero-top: #5A5C57;
   --bg: #F4EFE4; --card: #FBF8F2; --ink: #2B2926; --muted: #6E6858; --line: #E4DCCB; --brand: #4E7A5C; --brand-soft: #DDE9DD;
   --gold: #F3D89A; --cream: #FBF8F2; --rina: #8E6BB8; --ochre: #B07A2A;
   --display: "Lexend", ui-sans-serif, system-ui, sans-serif; --body: -apple-system, "SF Pro Text", system-ui, sans-serif;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --hero-top: #0E1B24;
   --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; --brand-soft: #2F3A31; --rina: #B79BDB; --ochre: #D9A65A; color-scheme: dark } }
-:root[data-theme="dark"] { --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; --brand-soft: #2F3A31; --rina: #B79BDB; --ochre: #D9A65A; color-scheme: dark }
+:root[data-theme="dark"] { --hero-top: #0E1B24; --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; --brand-soft: #2F3A31; --rina: #B79BDB; --ochre: #D9A65A; color-scheme: dark }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body { margin: 0; background: var(--hero-top); color: var(--ink); font: 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
 a { color: var(--brand); }
-.wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left)); }
 
 /* Hero: the app's painted street, with the clouds drifting behind the buildings as on sign-in. */
 .hero { position: relative; min-height: min(92vh, 860px); display: grid; place-items: center; overflow: hidden; isolation: isolate; color: var(--cream); text-align: center; }
@@ -38,7 +40,7 @@ a { color: var(--brand); }
 .shade { background: linear-gradient(rgb(14 24 30 / .55), rgb(14 24 30 / .2) 38%, rgb(14 24 30 / .25) 62%, var(--bg) 99%); }
 .day-only { display: block; } .night-only { display: none; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .day-only { display: none; } :root:not([data-theme="light"]) .night-only { display: block; } :root:not([data-theme="light"]) .night-sky { display: block; } }
-.hero-inner { padding: 96px 20px 140px; display: grid; justify-items: center; gap: 18px; }
+.hero-inner { padding: calc(96px + env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) 140px max(20px, env(safe-area-inset-left)); display: grid; justify-items: center; gap: 18px; }
 .glass { width: 96px; height: 96px; border-radius: 26px; display: grid; place-items: center; position: relative; overflow: hidden;
   background: rgb(255 255 255 / .16); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / .55), inset 0 -1px 0 rgb(255 255 255 / .12), 0 12px 30px rgb(0 0 0 / .25); }
@@ -50,6 +52,7 @@ a { color: var(--brand); }
   background: rgb(0 0 0 / .55); color: #fff; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .soon svg { width: 16px; height: 16px; }
 
+main, footer { background: var(--bg); }
 section { padding: 80px 0; }
 .eyebrow { font: 600 13px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--brand); margin: 0 0 10px; }
 h2 { font: 600 clamp(28px, 4vw, 38px)/1.15 var(--display); letter-spacing: -0.02em; margin: 0 0 14px; text-wrap: balance; }
