@@ -3,8 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#575750" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0E1B24" media="(prefers-color-scheme: dark)">
 <title>Home Free</title>
 <meta name="description" content="Home Free helps you and the people you share money with pay off debt and save, together, with one plan everyone can see.">
 <meta property="og:title" content="Home Free">
@@ -12,17 +10,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600&display=swap">
 <style>
-:root { --hero-top: #5A5C57;
+:root {
   --bg: #F4EFE4; --card: #FBF8F2; --ink: #2B2926; --muted: #6E6858; --line: #E4DCCB; --brand: #4E7A5C; --brand-soft: #DDE9DD;
   --gold: #F3D89A; --cream: #FBF8F2; --rina: #8E6BB8; --ochre: #B07A2A;
   --display: "Lexend", ui-sans-serif, system-ui, sans-serif; --body: -apple-system, "SF Pro Text", system-ui, sans-serif;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --hero-top: #0E1B24;
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; --brand-soft: #2F3A31; --rina: #B79BDB; --ochre: #D9A65A; color-scheme: dark } }
-:root[data-theme="dark"] { --hero-top: #0E1B24; --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; --brand-soft: #2F3A31; --rina: #B79BDB; --ochre: #D9A65A; color-scheme: dark }
+:root[data-theme="dark"] { --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; --brand-soft: #2F3A31; --rina: #B79BDB; --ochre: #D9A65A; color-scheme: dark }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--bg); }
-body { margin: 0; background: var(--hero-top); color: var(--ink); font: 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
 a { color: var(--brand); }
 .wrap { max-width: 1040px; margin: 0 auto; padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left)); }
 
@@ -52,7 +50,6 @@ a { color: var(--brand); }
   background: rgb(0 0 0 / .55); color: #fff; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .soon svg { width: 16px; height: 16px; }
 
-main, footer { background: var(--bg); }
 section { padding: 80px 0; }
 .eyebrow { font: 600 13px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--brand); margin: 0 0 10px; }
 h2 { font: 600 clamp(28px, 4vw, 38px)/1.15 var(--display); letter-spacing: -0.02em; margin: 0 0 14px; text-wrap: balance; }
