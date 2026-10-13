@@ -34,6 +34,7 @@ a { color: var(--brand); }
 .sky .strip img { width: 33.334%; height: 100%; object-fit: cover; flex: none; }
 .sky .strip img:nth-child(2) { transform: scaleX(-1); }
 @keyframes drift { from { transform: translateX(-66.667%); } to { transform: translateX(0); } }
+.birds { width: 100%; height: 100%; }
 .night-sky { background: linear-gradient(#0D1E2C, #224652 60%); display: none; }
 .shade { background: linear-gradient(rgb(14 24 30 / .55), rgb(14 24 30 / .2) 38%, rgb(14 24 30 / .25) 62%, var(--bg) 99%); }
 .day-only { display: block; } .night-only { display: none; }
@@ -119,6 +120,7 @@ footer a { color: var(--muted); }
 
 <header class="hero">
   <div class="layer sky day-only" aria-hidden="true"><div class="strip"><img src="assets/sky-day.webp" alt=""><img src="assets/sky-day.webp" alt=""><img src="assets/sky-day.webp" alt=""></div></div>
+  <canvas class="layer birds day-only" aria-hidden="true"></canvas>
   <div class="layer night-sky" aria-hidden="true"></div>
   <div class="layer sky night-only" aria-hidden="true"><div class="strip"><img src="assets/clouds-night.webp" alt=""><img src="assets/clouds-night.webp" alt=""><img src="assets/clouds-night.webp" alt=""></div></div>
   <div class="layer day-only" aria-hidden="true"><img src="assets/fg-day.webp" alt=""></div>
@@ -234,5 +236,37 @@ footer a { color: var(--muted); }
   </div>
 </footer>
 
+<script>
+// The app's flock: crosses the sky every other 16 seconds, flapping, in front of the clouds and behind the buildings.
+(() => {
+  const canvas = document.querySelector('.birds');
+  if (!canvas || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const ctx = canvas.getContext('2d');
+  const flock = [[0, .01, .3, 4.5], [.04, .035, 2.1, 3.5], [.07, 0, 4, 5], [.1, .045, 1.2, 3.2], [.03, .06, 5.1, 3.8], [.12, .02, 3.3, 4]];
+  const flight = 16;
+  const start = performance.now();
+  function frame(now) {
+    const dpr = devicePixelRatio || 1, w = canvas.clientWidth, h = canvas.clientHeight;
+    if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    const t = (now - start) / 1000, leg = (t % (flight * 2)) / flight;
+    if (leg < 1 && canvas.offsetParent !== null) {
+      ctx.strokeStyle = 'rgb(40 48 60 / .75)'; ctx.lineWidth = 1.3; ctx.lineCap = 'round';
+      for (const [dx, dy, phase, size] of flock) {
+        const x = (-.15 + leg * 1.3 - dx) * w, y = (.2 - leg * .06 + dy) * h * .45 + Math.sin(t * 1.5 + phase) * 3;
+        const flap = Math.sin(t * 9 + phase) * size * .7;
+        ctx.beginPath();
+        ctx.moveTo(x - size, y - flap); ctx.quadraticCurveTo(x - size * .4, y - flap * .3, x, y);
+        ctx.quadraticCurveTo(x + size * .4, y - flap * .3, x + size, y - flap); ctx.stroke();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
