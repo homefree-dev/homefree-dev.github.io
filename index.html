@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Home Free</title>
 <meta name="description" content="Home Free helps you and the people you share money with pay off debt and save, together, with one plan everyone can see.">
@@ -72,17 +73,25 @@ h2 { font: 600 clamp(28px, 4vw, 38px)/1.15 var(--display); letter-spacing: -0.02
 .steps p { margin: 0; color: var(--muted); font-size: 16px; }
 
 /* A still of the Home screen, drawn in HTML so it matches the app's colors in both themes. */
-.phone { position: relative; width: 340px; max-width: 100%; box-sizing: border-box; padding: 9px; border-radius: 58px; background: #0c0c0d;
+/* iPhone 17: 402 x 874 pt screen, 55 pt corners; the mock-up is drawn at 0.8x. */
+.phone { position: relative; width: 340px; max-width: 100%; box-sizing: border-box; padding: 9px; border-radius: 53px; background: #0c0c0d;
   box-shadow: inset 0 0 0 1.5px #3b3b3f, 0 0 0 1.5px #8e8e93, 0 0 0 2.5px #2c2c2e, 0 30px 60px rgb(0 0 0 / .22); font-size: 14px; }
-.phone::before, .phone::after { content: ""; position: absolute; width: 3px; border-radius: 2px; background: #2c2c2e; box-shadow: inset 0 0 0 1px #8e8e93; }
-.phone::before { left: -4px; top: 104px; height: 26px; box-shadow: inset 0 0 0 1px #8e8e93, 0 50px 0 #2c2c2e, 0 104px 0 #2c2c2e; }
-.phone::after { right: -4px; top: 168px; height: 78px; }
-.screen { position: relative; overflow: hidden; border-radius: 49px; background: var(--bg); padding: 56px 14px 30px; }
-.screen .island { position: absolute; top: 11px; left: 50%; width: 96px; height: 28px; margin-left: -48px; border-radius: 14px; background: #000; }
-.screen .status { position: absolute; top: 16px; left: 32px; right: 26px; display: flex; justify-content: space-between; align-items: center; font: 600 14.5px/1 var(--body); color: var(--ink); }
-.screen .status svg { height: 11px; width: auto; display: block; }
+.phone::before, .phone::after { content: ""; position: absolute; width: 3px; border-radius: 2px; background: #2c2c2e; }
+.phone::before { left: -4px; top: 118px; height: 24px; }
+.phone::after { right: -4px; top: 196px; height: 80px; }
+.phone .vol { position: absolute; left: -4px; width: 3px; height: 44px; border-radius: 2px; background: #2c2c2e; }
+.screen { position: relative; overflow: hidden; aspect-ratio: 402 / 874; border-radius: 44px; background: var(--bg); padding: 52px 14px 0; box-sizing: border-box; }
+.screen .island { position: absolute; z-index: 2; top: 9px; left: 50%; width: 101px; height: 30px; margin-left: -50.5px; border-radius: 15px; background: #000; }
+.screen .status { position: absolute; z-index: 2; top: 17px; left: 34px; right: 26px; display: flex; justify-content: space-between; align-items: center; font: 600 13.6px/1 var(--body); color: var(--ink); }
+.screen .status svg { height: 10px; width: auto; display: block; }
 .screen .icons { display: flex; gap: 5px; align-items: center; }
-.screen .home { position: absolute; bottom: 8px; left: 50%; width: 118px; height: 5px; margin-left: -59px; border-radius: 3px; background: var(--ink); opacity: .85; }
+.screen .tabs { position: absolute; z-index: 2; left: 16px; right: 16px; bottom: 22px; height: 50px; border-radius: 25px; display: flex; padding: 4px;
+  background: color-mix(in srgb, var(--card) 72%, transparent); backdrop-filter: blur(12px) saturate(1.6); -webkit-backdrop-filter: blur(12px) saturate(1.6);
+  box-shadow: 0 0 0 .5px color-mix(in srgb, var(--ink) 14%, transparent), 0 6px 18px rgb(0 0 0 / .12); }
+.screen .tabs span { flex: 1; display: grid; justify-items: center; align-content: center; gap: 2px; border-radius: 21px; font: 600 9.5px var(--body); color: var(--ink); }
+.screen .tabs span:first-child { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--brand); }
+.screen .tabs svg { width: 21px; height: 21px; }
+.screen .home { position: absolute; z-index: 3; bottom: 7px; left: 50%; width: 107px; height: 4px; margin-left: -53.5px; border-radius: 2px; background: var(--ink); opacity: .85; }
 .phone .title { font: 600 26px var(--display); margin: 0 4px 14px; }
 .pcard { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 13px 14px 15px; margin-bottom: 11px; }
 .plabel { font: 600 10px var(--body); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
@@ -106,6 +115,19 @@ h2 { font: 600 clamp(28px, 4vw, 38px)/1.15 var(--display); letter-spacing: -0.02
 .checks { list-style: none; padding: 0; margin: 26px 0 22px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px 28px; }
 .checks li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; }
 .checks svg { width: 22px; height: 22px; color: var(--brand); margin-top: 2px; }
+
+/* Motion like the app: things arrive as they scroll into view, top to bottom, and the Home screen fills in. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-r] { opacity: 0; transform: translateY(16px); transition: opacity .55s ease var(--d, 0s), transform .75s cubic-bezier(.2, .9, .25, 1.12) var(--d, 0s); }
+  .js [data-r].in { opacity: 1; transform: none; }
+  .ring .f { transition: stroke-dashoffset 1s cubic-bezier(.3, 0, .2, 1) .3s; }
+  .js .phone:not(.in) .ring .f { stroke-dashoffset: 201; }
+  .bar i { transition: width 1s cubic-bezier(.3, 0, .2, 1) .4s; }
+  .js .phone:not(.in) .bar i { width: 0; }
+  .js .hero-inner > * { animation: settle .9s cubic-bezier(.2, .9, .25, 1.1) both; }
+  .js .hero-inner > :nth-child(2) { animation-delay: .08s; } .js .hero-inner > :nth-child(3) { animation-delay: .16s; } .js .hero-inner > :nth-child(4) { animation-delay: .24s; }
+  @keyframes settle { from { opacity: 0; transform: translateY(14px) scale(.98); } }
+}
 
 footer { padding: 28px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 footer .wrap { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
@@ -169,7 +191,7 @@ footer a { color: var(--muted); }
     </div>
   </section>
 
-  <section class="wrap how">
+  <section class="wrap how" id="how">
     <div>
       <p class="eyebrow">How it works</p>
       <h2>Three steps, then just check in.</h2>
@@ -180,6 +202,7 @@ footer a { color: var(--muted); }
       </ol>
     </div>
     <div class="phone" role="img" aria-label="The Home screen: this month 46% paid, the next payments, and who's paid what">
+      <span class="vol" style="top:174px"></span><span class="vol" style="top:228px"></span>
       <div class="screen">
       <span class="island"></span>
       <div class="status" aria-hidden="true"><span>9:41</span><span class="icons">
@@ -206,6 +229,16 @@ footer a { color: var(--muted); }
         <p class="phead">Debt-free by March 2030</p>
         <p class="psub">$40,590.00 left. 6% paid off since July.</p>
         <div class="bar"><i></i></div>
+      </div>
+      <div class="pcard">
+        <div class="plabel">Your crew</div>
+        <div class="prow"><span class="av">S</span><span class="n">Sam paid</span><b>$340.00</b></div>
+        <div class="prow"><span class="av r">R</span><span class="n">Rina paid</span><b>$245.00</b></div>
+      </div>
+      <div class="tabs" aria-hidden="true">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4.5l8.5 6.5"/><circle cx="12" cy="13.5" r="2.2" fill="currentColor" stroke="none"/><path d="M7.5 20c.6-2.4 2.4-3.6 4.5-3.6s3.9 1.2 4.5 3.6" fill="currentColor" stroke="none"/></svg>Home</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3.5 6.5 9 4.5l6 2 5.5-2v13l-5.5 2-6-2-5.5 2Z"/><path d="M9 4.5v13M15 6.5v13"/></svg>Plan</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-6 4 3 7-8"/><path d="M4 20.5h16"/></svg>Progress</span>
       </div>
       <span class="home"></span>
       </div>
@@ -236,6 +269,48 @@ footer a { color: var(--muted); }
   </div>
 </footer>
 
+<script>
+// Reveals like the app: whatever comes into view together arrives top to bottom, 80 ms apart; amounts roll up from zero.
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  const targets = document.querySelectorAll('main .eyebrow, main h2, main h2 + p, .feature, .steps li, .phone, .pcard, .checks li, .privacy > p');
+  targets.forEach(el => el.setAttribute('data-r', ''));
+  const money = /\$[\d,]+(\.\d+)?|\d+%/g;
+  const rolling = [...document.querySelectorAll('.phone .ring span, .phone .prow b, .phone .psub')].map(el => ({ el, text: el.textContent }));
+  const zeroed = text => text.replace(money, m => m.replace(/\d/g, '0'));
+  rolling.forEach(r => r.el.textContent = zeroed(r.text));
+  function roll() {
+    const start = performance.now();
+    const step = now => {
+      const k = Math.min((now - start) / 1000, 1), e = 1 - Math.pow(1 - k, 3);
+      rolling.forEach(({ el, text }) => {
+        el.textContent = text.replace(money, m => {
+          const n = parseFloat(m.replace(/[$,%]/g, '')), dec = (m.split('.')[1] || '').length;
+          const v = (n * e).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+          return (m.startsWith('$') ? '$' : '') + v + (m.endsWith('%') ? '%' : '');
+        });
+      });
+      if (k < 1) requestAnimationFrame(step);
+    };
+    setTimeout(() => requestAnimationFrame(step), 300);
+  }
+  let batch = [];
+  const io = new IntersectionObserver(entries => {
+    entries.filter(e => e.isIntersecting).forEach(e => { io.unobserve(e.target); batch.push(e.target); });
+    if (!batch.length || batch.timer) return;
+    batch.timer = setTimeout(() => {
+      const items = batch.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+      batch = [];
+      items.forEach((el, i) => {
+        el.style.setProperty('--d', (i * 0.08) + 's');
+        el.classList.add('in');
+        if (el.classList.contains('phone')) roll();
+      });
+    }, 30);
+  }, { threshold: 0.2 });
+  targets.forEach(el => io.observe(el));
+})();
+</script>
 <script>
 // The app's flock: crosses the sky every other 16 seconds, flapping, in front of the clouds and behind the buildings.
 (() => {
