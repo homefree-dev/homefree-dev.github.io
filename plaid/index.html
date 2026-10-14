@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Free</title>
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@600&display=swap">
+<style>
+:root { --bg: #F4EFE4; --card: #FBF8F2; --ink: #2B2926; --muted: #6E6858; --line: #E4DCCB; --brand: #4E7A5C;
+  --display: "Lexend", ui-sans-serif, system-ui, sans-serif; --body: -apple-system, "SF Pro Text", system-ui, sans-serif; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #1B1A18; --card: #242220; --ink: #EFE8D9; --muted: #A39B8A; --line: #35322D; --brand: #93BD9F; color-scheme: dark }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); }
+main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+header a { color: inherit; text-decoration: none; font: 600 20px var(--display); letter-spacing: -0.02em; }
+header span { color: var(--brand); }
+h1 { font: 600 32px/1.15 var(--display); letter-spacing: -0.02em; margin: 0 0 6px; text-wrap: balance; }
+.date { color: var(--muted); margin: 0 0 28px; font-size: 14px; }
+h2 { font: 600 20px/1.3 var(--display); margin: 36px 0 8px; }
+p, li { max-width: 68ch; }
+ul { padding-left: 20px; }
+li { margin: 4px 0; }
+a { color: var(--brand); }
+.summary { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 4px 20px; margin-bottom: 8px; }
+footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; display: flex; gap: 16px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<main>
+<header><a href="../">Home <span>Free</span></a></header>
+
+<h1>Back to Home Free</h1>
+<p>Your bank sent you here to finish connecting. If Home Free didn't open on its own, open the app on your iPhone to carry on.</p>
+<footer><a href="../privacy/">Privacy Policy</a><a href="../terms/">Terms of Use</a><a href="mailto:homefree.dev@gmail.com">homefree.dev@gmail.com</a></footer>
+</main>
+</body>
+</html>

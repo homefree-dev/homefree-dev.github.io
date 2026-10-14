@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["37PSB2TKJ2.app.homefree.ios.dev"],
+        "components": [{ "/": "/plaid/*", "comment": "Bank sign-in returns to Link" }]
+      }
+    ]
+  }
+}
