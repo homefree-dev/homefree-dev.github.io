@@ -8,6 +8,8 @@
 <meta name="description" content="Home Free helps you and the people you share money with pay off debt and save, together, with one plan everyone can see.">
 <meta property="og:title" content="Home Free">
 <meta property="og:description" content="Pay off debt and save together, as a crew.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600&display=swap">
 <style>
@@ -41,11 +43,7 @@ a { color: var(--brand); }
 .day-only { display: block; } .night-only { display: none; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .day-only { display: none; } :root:not([data-theme="light"]) .night-only { display: block; } :root:not([data-theme="light"]) .night-sky { display: block; } }
 .hero-inner { padding: 96px 20px 140px; display: grid; justify-items: center; gap: 18px; }
-.glass { width: 96px; height: 96px; border-radius: 26px; display: grid; place-items: center; position: relative; overflow: hidden;
-  background: rgb(255 255 255 / .16); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / .55), inset 0 -1px 0 rgb(255 255 255 / .12), 0 12px 30px rgb(0 0 0 / .25); }
-.glass::before { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, rgb(255 255 255 / .38), rgb(255 255 255 / 0) 42%); }
-.glass svg { width: 68px; height: 68px; position: relative; }
+.app-icon { width: 96px; height: 96px; border-radius: 22px; display: block; box-shadow: 0 0 0 1px rgb(255 255 255 / .18), 0 12px 30px rgb(0 0 0 / .28); }
 .word { width: min(340px, 78vw); height: auto; filter: drop-shadow(0 2px 14px rgb(0 0 0 / .35)); }
 .tag { font: 500 clamp(20px, 3vw, 26px)/1.3 var(--display); margin: 0; max-width: 24ch; text-shadow: 0 1px 10px rgb(0 0 0 / .45); text-wrap: balance; }
 .soon { margin-top: 6px; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; font: 600 15px var(--body);
@@ -149,13 +147,7 @@ footer a { color: var(--muted); }
   <div class="layer night-only" aria-hidden="true"><img src="assets/fg-night.webp" alt=""></div>
   <div class="layer shade" aria-hidden="true"></div>
   <div class="hero-inner">
-    <div class="glass"><svg viewBox="0 -960 960 960" aria-hidden="true">
-<path d="M96-570 480-850 864-570" fill="none" stroke="#FBF8F2" stroke-width="130" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M700-690V-820" fill="none" stroke="#FBF8F2" stroke-width="130" stroke-linecap="round"/>
-<circle cx="240" cy="-340" r="80" fill="#C2D8C6"/><path d="M80-60c0-90 70-160 160-160s160 70 160 160z" fill="#C2D8C6"/>
-<circle cx="720" cy="-340" r="80" fill="#AECBB4"/><path d="M560-60c0-90 70-160 160-160s160 70 160 160z" fill="#AECBB4"/>
-<circle cx="480" cy="-400" r="100" fill="#DDE9DD"/><path d="M290-60c0-110 85-190 190-190s190 80 190 190z" fill="#DDE9DD"/>
-</svg></div>
+    <img class="app-icon" src="assets/app-icon.png" width="96" height="96" alt="Home Free app icon">
     <h1 style="margin:0"><svg class="word" role="img" aria-label="Home Free" xmlns="http://www.w3.org/2000/svg" viewBox="91 -700 5050 710"><path fill="#FBF8F2" d="M91 0V-700H241V-417H532V-700H682V0H532V-281H241V0Z M1060 10Q979 10 915.5 -25.5Q852 -61 815.5 -123.5Q779 -186 779 -265Q779 -344 815.5 -406.5Q852 -469 915.5 -504.5Q979 -540 1060 -540Q1140 -540 1203 -504.5Q1266 -469 1302.5 -406.5Q1339 -344 1339 -265Q1339 -186 1302.5 -123.5Q1266 -61 1203 -25.5Q1140 10 1060 10ZM1060 -114Q1100 -114 1130.5 -133.5Q1161 -153 1178.5 -187Q1196 -221 1196 -265Q1196 -331 1157.5 -374Q1119 -417 1060 -417Q1020 -417 989 -397Q958 -377 940.5 -343Q923 -309 923 -265Q923 -221 940.5 -187Q958 -153 989 -133.5Q1020 -114 1060 -114Z M1416 0V-529H1553L1555 -459Q1582 -496 1624.5 -517.5Q1667 -539 1712 -539Q1767 -539 1807 -515.5Q1847 -492 1868 -440Q1895 -484 1945.5 -511.5Q1996 -539 2046 -539Q2231 -539 2231 -321V0H2089V-311Q2089 -416 2001 -416Q1955 -416 1924.5 -387Q1894 -358 1894 -316V0H1752V-312Q1752 -363 1729.5 -389.5Q1707 -416 1665 -416Q1619 -416 1589 -387.5Q1559 -359 1559 -317V0Z M2587 10Q2501 10 2436.5 -25Q2372 -60 2336.5 -121Q2301 -182 2301 -261Q2301 -343 2335.5 -406Q2370 -469 2431 -504.5Q2492 -540 2570 -541Q2642 -540 2698.5 -506Q2755 -472 2787 -412.5Q2819 -353 2817 -277L2816 -233H2439Q2451 -179 2493.5 -147Q2536 -115 2602 -115Q2637 -115 2666 -126Q2695 -137 2728 -164L2796 -69Q2752 -30 2697 -10Q2642 10 2587 10ZM2572 -419Q2462 -419 2440 -320H2683V-324Q2680 -365 2648.5 -392Q2617 -419 2572 -419Z "/><path fill="#F3D89A" d="M3192 0V-700H3656V-580H3322V-405H3613V-287H3322V0Z M3739 0V-527H3860L3861 -436Q3885 -480 3928.5 -509Q3972 -538 4020 -538Q4037 -538 4052.5 -535Q4068 -532 4078 -528L4045 -393Q4034 -399 4018 -403Q4002 -407 3986 -407Q3952 -407 3924 -390.5Q3896 -374 3879.5 -345.5Q3863 -317 3863 -281V0Z M4355 10Q4272 10 4208.5 -24.5Q4145 -59 4109.5 -120Q4074 -181 4074 -259Q4074 -341 4108.5 -404Q4143 -467 4203.5 -502.5Q4264 -538 4343 -539Q4413 -538 4468.5 -504.5Q4524 -471 4555.5 -412.5Q4587 -354 4585 -279L4584 -236H4195Q4205 -173 4251 -136.5Q4297 -100 4368 -100Q4405 -100 4436 -112Q4467 -124 4503 -155L4564 -70Q4523 -33 4467 -11.5Q4411 10 4355 10ZM4343 -430Q4222 -430 4198 -320H4465V-325Q4461 -370 4426 -400Q4391 -430 4343 -430Z M4911 10Q4828 10 4764.5 -24.5Q4701 -59 4665.5 -120Q4630 -181 4630 -259Q4630 -341 4664.5 -404Q4699 -467 4759.5 -502.5Q4820 -538 4899 -539Q4969 -538 5024.5 -504.5Q5080 -471 5111.5 -412.5Q5143 -354 5141 -279L5140 -236H4751Q4761 -173 4807 -136.5Q4853 -100 4924 -100Q4961 -100 4992 -112Q5023 -124 5059 -155L5120 -70Q5079 -33 5023 -11.5Q4967 10 4911 10ZM4899 -430Q4778 -430 4754 -320H5021V-325Q5017 -370 4982 -400Q4947 -430 4899 -430Z"/></svg></h1>
     <p class="tag">Pay off debt and save together, as a crew.</p>
     <span class="soon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9s-1.9-.8-3.2-.8C6.5 7.2 5 8.2 4.1 9.7c-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.8-4.6zM14 5.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>Coming soon to iPhone</span>
